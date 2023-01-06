@@ -1,0 +1,36 @@
+{
+  "Nicholas Lackless": {
+    "Inventar": [
+      { "name": "Helm", "einzelgewicht": 50, "einheit": "Stück", "menge": 1 },
+      {
+        "name": "Brustplatte",
+        "einzelgewicht": 200,
+        "einheit": "Stück",
+        "menge": 1
+      },
+      { "name": "Gold", "einzelgewicht": 12, "einheit": "Barren", "menge": 5 }
+    ]
+  },
+  "Nolan Kübler (Zückerli)": {
+    "Inventar": [
+      {
+        "name": "Viel besserer Helm",
+        "einzelgewicht": 50,
+        "einheit": "Stück",
+        "menge": 1
+      },
+      {
+        "name": "Noch viel tollere Brustplatte",
+        "einzelgewicht": 200,
+        "einheit": "Stück",
+        "menge": 1
+      },
+      {
+        "name": "glänzenderes Gold",
+        "einzelgewicht": 12,
+        "einheit": "Barren",
+        "menge": 5
+      }
+    ]
+  }
+}
