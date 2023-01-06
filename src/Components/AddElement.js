@@ -18,24 +18,29 @@ export default function AddElement(props) {
   }, []);
 
   return (
-    <>
-      {props.attributes.map((attribute, index) => {
-        return (
-          <span key={index}>
-            {attribute}:
-            <input
-              type="text"
-              value={newElement[attribute]}
-              onChange={(event) =>
-                updateAttribute(attribute, event.target.value)
-              }
-            />
-            <br />
-          </span>
-        );
-      })}
-
-      <span onClick={() => props.addElement(newElement)}>+</span>
-    </>
+    <span className="flexrow">
+      <span className="flexcol">
+        {props.attributes.map((attribute, index) => {
+          return (
+            <span key={index}>
+              {attribute}:
+              <input
+                type="text"
+                value={newElement[attribute]}
+                onChange={(event) =>
+                  updateAttribute(attribute, event.target.value)
+                }
+              />
+            </span>
+          );
+        })}
+      </span>
+      <span
+        className="flex-last button"
+        onClick={() => props.addElement(newElement)}
+      >
+        +
+      </span>
+    </span>
   );
 }

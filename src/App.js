@@ -1,15 +1,37 @@
 import Inventar from "./Components/Inventar.js";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Waffen from "./Components/Waffen.js";
+import {
+  getCharacterNames,
+  getItemsByCharacter,
+  createCharacter,
+  getPriceTest,
+} from "./BackendAdapter.js";
+import NavBar from "./Components/NavBar.js";
+import Preis from "./Classes/Preis.js";
 
 function App() {
-  const [items, setItems] = useState([
-    { name: "Helm", einzelgewicht: 50, einheit: "Stück", menge: 1 },
-    { name: "Brustplatte", einzelgewicht: 200, einheit: "Stück", menge: 1 },
-    { name: "Gold", einzelgewicht: 12, einheit: "Barren", menge: 5 },
-  ]);
-  const [waffen, setWaffen] = useState(["Schwert", "Armbrust"]);
+  const [items, setItems] = useState([]);
+  const [characterNames, setCharacterNames] = useState([]);
+  const [currentCharacter, setCurrentCharacter] = useState("");
+  //const [waffen, setWaffen] = useState(["Schwert", "Armbrust"]);
+  const refreshCharacters = async () => {
+    await getCharacterNames().then((names) => {
+      setCharacterNames(names);
+      setCurrentCharacter(names[0]);
+    });
+  };
+
+  useEffect(() => {
+    refreshCharacters();
+  }, []);
+
+  useEffect(() => {
+    getItemsByCharacter(currentCharacter).then((items) => {
+      setItems(items);
+    });
+  }, [currentCharacter]);
 
   const removeItem = (index) => {
     let newItems = items.filter((item, i) => i !== index);
@@ -17,28 +39,32 @@ function App() {
   };
 
   const addItem = (item) => {
-    console.log(item);
     let newItems = items.concat([item]);
     setItems(newItems);
   };
 
-  const removeWaffe = (index) => {
-    let newWaffen = waffen.filter((waffe, i) => i !== index);
-    setWaffen(newWaffen);
+  const selectCharacter = (characterName) => {
+    setCurrentCharacter(characterName);
   };
 
-  const addWaffe = (waffe) => {
-    let newWaffen = waffen.concat([waffe]);
-    setWaffen(newWaffen);
+  const addCharacter = (characterName) => {
+    createCharacter(characterName).then(
+      refreshCharacters(characterNames.length)
+    );
   };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          <Inventar items={items} removeItem={removeItem} addItem={addItem} />
-        </p>
-      </header>
+      <NavBar
+        characters={characterNames}
+        selectCharacter={selectCharacter}
+        addCharacter={addCharacter}
+      />
+      {currentCharacter ? (
+        <Inventar items={items} removeItem={removeItem} addItem={addItem} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import { useState } from "react";
+import Preis from "../Classes/Preis";
 import AddElement from "./AddElement";
 import ElementList from "./ElementList";
+import Table from "./Table";
 
 export default function Inventar(props) {
   const addItem = (newStringItem) => {
@@ -8,12 +10,16 @@ export default function Inventar(props) {
     let newItem = {
       name: newStringItem.name,
       einzelgewicht:
-        Number(newStringItem.einzelgewicht) === ""
+        newStringItem["einzelgewicht in unzen"] === ""
           ? 0
-          : Number(newStringItem.einzelgewicht),
-      menge:
-        Number(newStringItem.menge) === "" ? 1 : Number(newStringItem.menge),
+          : Number(newStringItem["einzelgewicht in unzen"]),
+      menge: newStringItem.menge === "" ? 1 : Number(newStringItem.menge),
       einheit: newStringItem.einheit,
+      preis:
+        newStringItem["preis in kreuzern"] === ""
+          ? new Preis(0)
+          : new Preis(Number(newStringItem["preis in kreuzern"])),
+      handelszonen: newStringItem.handelszonen,
     };
     props.addItem(newItem);
   };
@@ -29,24 +35,45 @@ export default function Inventar(props) {
     );
   };
 
+  const items = props.items ? props.items : [];
+  let gesamtgewicht = 0;
+  items.map((item) => (gesamtgewicht += item.einzelgewicht * item.menge));
+
+  let displayItems = items.map((item) => {
+    return {
+      ...item,
+      gesamtgewicht: item.menge * item.einzelgewicht,
+      gesamtpreis: new Preis(item.menge * item.preis.getValueInKreuzer()),
+    };
+  });
+
+  console.log(displayItems[0]);
+
   return (
     <>
-      <ElementList
-        title="Inventar"
-        elements={props.items.map(
-          (item) =>
-            item.menge +
-            " " +
-            item.einheit +
-            " " +
-            item.name +
-            ", " +
-            renderGewicht(item)
-        )}
-        deleteElement={props.removeItem}
+      <Table
+        data={displayItems}
+        columns={[
+          "menge",
+          "einheit",
+          "name",
+          "preis",
+          "gesamtpreis",
+          "einzelgewicht",
+          "gesamtgewicht",
+          "handelszonen",
+        ]}
       />
+      <p>Gesamtgewicht: {gesamtgewicht} Unzen</p>
       <AddElement
-        attributes={["name", "einzelgewicht", "menge", "einheit"]}
+        attributes={[
+          "name",
+          "einzelgewicht in unzen",
+          "menge",
+          "einheit",
+          "preis in kreuzern",
+          "handelszonen",
+        ]}
         addElement={addItem}
       />
     </>

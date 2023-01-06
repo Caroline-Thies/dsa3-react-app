@@ -1,14 +1,30 @@
 {
   "Nicholas Lackless": {
     "Inventar": [
-      { "name": "Helm", "einzelgewicht": 50, "einheit": "Stück", "menge": 1 },
+      {
+        "name": "Helm",
+        "einzelgewicht": 50,
+        "einheit": "Stück",
+        "menge": 1,
+        "preis": 5000,
+        "handelszonen": "alle außer SU"
+      },
       {
         "name": "Brustplatte",
         "einzelgewicht": 200,
         "einheit": "Stück",
-        "menge": 1
+        "menge": 1,
+        "preis": 18000,
+        "handelszonen": "MU, KA"
       },
-      { "name": "Gold", "einzelgewicht": 12, "einheit": "Barren", "menge": 5 }
+      {
+        "name": "Gold",
+        "einzelgewicht": 12,
+        "einheit": "Barren",
+        "menge": 5,
+        "preis": 100000,
+        "handelszonen": "alle"
+      }
     ]
   },
   "Nolan Kübler (Zückerli)": {
@@ -17,19 +33,25 @@
         "name": "Viel besserer Helm",
         "einzelgewicht": 50,
         "einheit": "Stück",
-        "menge": 1
+        "menge": 1,
+        "preis": 5000,
+        "handelszonen": "alle außer SU"
       },
       {
         "name": "Noch viel tollere Brustplatte",
         "einzelgewicht": 200,
         "einheit": "Stück",
-        "menge": 1
+        "menge": 1,
+        "preis": 18000,
+        "handelszonen": "MU, KA"
       },
       {
         "name": "glänzenderes Gold",
         "einzelgewicht": 12,
         "einheit": "Barren",
-        "menge": 5
+        "menge": 5,
+        "preis": 100000,
+        "handelszonen": "alle"
       }
     ]
   }
