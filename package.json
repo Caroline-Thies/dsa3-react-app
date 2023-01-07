@@ -2,6 +2,7 @@
   "name": "dsa3-react-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://caroline-thies.github.io/dsa3-react-app/",
   "dependencies": {
     "@supabase/auth-ui-react": "^0.2.6",
     "@supabase/supabase-js": "^2.2.3",
@@ -15,6 +16,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -37,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
