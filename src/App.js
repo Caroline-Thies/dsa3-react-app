@@ -6,10 +6,10 @@ import Home from "./Pages/Home";
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/dsa3-react-app" element={<Login />} />
+        <Route path="/dsa3-react-app/home" element={<Home />} />
       </Routes>
     </Router>
   );
