@@ -47,10 +47,10 @@ export default function Inventar(props) {
     };
   });
 
-  console.log(displayItems[0]);
-
+  let title = props.title ? props.title : "Inventar";
   return (
     <>
+      <h1>{title}</h1>
       <Table
         data={displayItems}
         columns={[

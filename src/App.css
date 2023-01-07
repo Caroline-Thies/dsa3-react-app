@@ -37,6 +37,8 @@ body {
   padding: 5px;
   font-weight: bold;
   margin: 5px;
+  width: fit-content;
+  cursor: pointer;
 }
 
 tr > th {

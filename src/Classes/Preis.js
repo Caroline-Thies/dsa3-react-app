@@ -19,7 +19,6 @@ class Preis {
       dukatenText + silbertalerText + hellerText === "" || kreuzer > 0
         ? kreuzer + "K"
         : "";
-    console.log("found" + dukaten + silbertaler + heller + kreuzer);
     return dukatenText + silbertalerText + hellerText + kreuzerText;
   }
 
