@@ -46,6 +46,7 @@ export async function getItemsByCharacter(characterName) {
       preis: new Preis(item.preis),
       currentlyHeld: item.currently_held,
       handelszonen: "",
+      id: item.id,
     };
   });
 }
@@ -77,4 +78,8 @@ export async function addItem(item, currentlyHeld, characterName) {
       currently_held: currentlyHeld,
     },
   ]);
+}
+
+export async function removeItem(itemId) {
+  await supabase.from("inventory").delete().eq("id", itemId);
 }

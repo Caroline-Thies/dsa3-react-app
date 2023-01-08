@@ -5,6 +5,7 @@ import {
   getItemsByCharacter,
   createCharacter,
   addItem as addItemBackend,
+  removeItem,
 } from "../BackendAdapter.js";
 import NavBar from "../Components/NavBar.js";
 import { createClient } from "@supabase/supabase-js";
@@ -76,11 +77,6 @@ function Home(props) {
     refreshItems();
   }, [currentCharacter, refreshItems]);
 
-  const removeItem = (index) => {
-    let newItems = items.filter((item, i) => i !== index);
-    setItems(newItems);
-  };
-
   const addItem = (item, currentlyHeld) => {
     addItemBackend(item, currentlyHeld, currentCharacter);
   };
@@ -97,6 +93,10 @@ function Home(props) {
     supabase.auth.signOut();
     props.navigate("Login");
   };
+
+  const deleteItem = (item_id) => {
+    removeItem(item_id);
+  };
   return (
     <div className="Home">
       <NavBar
@@ -110,6 +110,7 @@ function Home(props) {
           removeItem={removeItem}
           addItem={(item) => addItem(item, true)}
           title="Mitgeführte Gegenstände"
+          deleteItem={deleteItem}
         />
       ) : (
         <></>
@@ -120,6 +121,7 @@ function Home(props) {
           removeItem={removeItem}
           addItem={(item) => addItem(item, false)}
           title="Weitere Gegenstände"
+          deleteItem={deleteItem}
         />
       ) : (
         <></>

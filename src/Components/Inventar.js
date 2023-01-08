@@ -50,6 +50,7 @@ export default function Inventar(props) {
           "gesamtgewicht",
           "handelszonen",
         ]}
+        deleteItem={props.deleteItem}
       />
       <p>Gesamtgewicht: {gesamtgewicht} Unzen</p>
       <AddElement
