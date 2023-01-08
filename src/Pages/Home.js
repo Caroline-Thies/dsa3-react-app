@@ -81,8 +81,8 @@ function Home(props) {
     setItems(newItems);
   };
 
-  const addItem = (item) => {
-    addItemBackend(item, currentCharacter);
+  const addItem = (item, currentlyHeld) => {
+    addItemBackend(item, currentlyHeld, currentCharacter);
   };
 
   const selectCharacter = (characterName) => {
@@ -108,7 +108,7 @@ function Home(props) {
         <Inventar
           items={items.filter((item) => item.currentlyHeld)}
           removeItem={removeItem}
-          addItem={addItem}
+          addItem={(item) => addItem(item, true)}
           title="Mitgeführte Gegenstände"
         />
       ) : (
@@ -118,7 +118,7 @@ function Home(props) {
         <Inventar
           items={items.filter((item) => !item.currentlyHeld)}
           removeItem={removeItem}
-          addItem={addItem}
+          addItem={(item) => addItem(item, false)}
           title="Weitere Gegenstände"
         />
       ) : (

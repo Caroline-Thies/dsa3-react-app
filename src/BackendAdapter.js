@@ -57,7 +57,7 @@ export async function createCharacter(characterName) {
     .insert([{ name: characterName, user_id: uid }]);
 }
 
-export async function addItem(item, characterName) {
+export async function addItem(item, currentlyHeld, characterName) {
   let { data: character, error1 } = await supabase
     .from("characters")
     .select("id")
@@ -74,7 +74,7 @@ export async function addItem(item, characterName) {
       preis: item.preis.getValueInKreuzer(),
       gewicht: item.einzelgewicht,
       owning_character: characterId,
-      currently_held: true,
+      currently_held: currentlyHeld,
     },
   ]);
 }
