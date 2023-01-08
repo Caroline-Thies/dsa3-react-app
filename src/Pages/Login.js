@@ -14,6 +14,11 @@ export default function Login(props) {
       props.navigate("Login");
     }
   });
+  supabase.auth.getUser().then((value) => {
+    if (value.data?.user) {
+      props.navigate("Home");
+    }
+  });
   return (
     <div>
       <Auth
