@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/dsa3-react-app/static/css/main.1535a155.css",
-    "main.js": "/dsa3-react-app/static/js/main.3ce9a014.js",
-    "static/js/787.bb3ca780.chunk.js": "/dsa3-react-app/static/js/787.bb3ca780.chunk.js",
-    "index.html": "/dsa3-react-app/index.html",
-    "main.1535a155.css.map": "/dsa3-react-app/static/css/main.1535a155.css.map",
-    "main.3ce9a014.js.map": "/dsa3-react-app/static/js/main.3ce9a014.js.map",
-    "787.bb3ca780.chunk.js.map": "/dsa3-react-app/static/js/787.bb3ca780.chunk.js.map"
+    "main.css": "https://Caroline-Thies.github.io/dsa3-react-app/static/css/main.1535a155.css",
+    "main.js": "https://Caroline-Thies.github.io/dsa3-react-app/static/js/main.bb6cd0e2.js",
+    "static/js/787.bb3ca780.chunk.js": "https://Caroline-Thies.github.io/dsa3-react-app/static/js/787.bb3ca780.chunk.js",
+    "index.html": "https://Caroline-Thies.github.io/dsa3-react-app/index.html",
+    "main.1535a155.css.map": "https://Caroline-Thies.github.io/dsa3-react-app/static/css/main.1535a155.css.map",
+    "main.bb6cd0e2.js.map": "https://Caroline-Thies.github.io/dsa3-react-app/static/js/main.bb6cd0e2.js.map",
+    "787.bb3ca780.chunk.js.map": "https://Caroline-Thies.github.io/dsa3-react-app/static/js/787.bb3ca780.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1535a155.css",
-    "static/js/main.3ce9a014.js"
+    "static/js/main.bb6cd0e2.js"
   ]
 }
