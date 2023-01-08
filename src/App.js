@@ -4,11 +4,13 @@ import Home from "./Pages/Home";
 import { useState } from "react";
 
 function App() {
+  /*
   const [currentPage, setCurrentPage] = useState("Login");
 
   const navigate = (page) => {
     setCurrentPage(page);
   };
+
 
   const renderPage = () => {
     if (currentPage === "Login") {
@@ -17,8 +19,9 @@ function App() {
       return <Home navigate={navigate} />;
     }
   };
+  */
 
-  return <div className="App">{renderPage()}</div>;
+  return <div className="App">Test</div>;
 }
 
 export default App;
