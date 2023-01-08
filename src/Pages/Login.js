@@ -21,6 +21,7 @@ export default function Login(props) {
         appearance={{ theme: ThemeSupa }}
         theme="dark"
         providers={["discord"]}
+        redirectTo="https://caroline-thies.github.io/dsa3-react-app/"
       />
     </div>
   );
