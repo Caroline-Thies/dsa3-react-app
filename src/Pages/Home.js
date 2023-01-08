@@ -58,19 +58,7 @@ function Home(props) {
       .channel("public:inventory")
       .on(
         "postgres_changes",
-        { event: "INSERT", schema: "public", table: "inventory" },
-        (payload) => {
-          console.log("Update received! ", payload);
-          refreshItems();
-        }
-      )
-      .subscribe();
-
-    supabase
-      .channel("public:inventory")
-      .on(
-        "postgres_changes",
-        { event: "DELETE", schema: "public", table: "inventory" },
+        { event: "*", schema: "public", table: "inventory" },
         (payload) => {
           console.log("Update received! ", payload);
           refreshItems();
