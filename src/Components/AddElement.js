@@ -13,9 +13,10 @@ export default function AddElement(props) {
     let newElement = {};
     props.attributes.map((attr) => {
       newElement[attr] = "";
+      return "";
     });
     setNewElement(newElement);
-  }, []);
+  }, [props.attributes]);
 
   return (
     <span className="flexrow">

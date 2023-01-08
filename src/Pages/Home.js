@@ -1,5 +1,5 @@
 import Inventar from "../Components/Inventar.js";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   getCharacterNames,
   getItemsByCharacter,
@@ -15,18 +15,28 @@ const supabase = createClient(
 );
 
 function Home(props) {
-  const [user, setUser] = useState({});
   const [items, setItems] = useState([]);
   const [characterNames, setCharacterNames] = useState([]);
   const [currentCharacter, setCurrentCharacter] = useState("");
   //const [waffen, setWaffen] = useState(["Schwert", "Armbrust"]);
 
+  const refreshCharacters = useCallback(async () => {
+    await getCharacterNames().then((names) => {
+      setCharacterNames(names);
+      if (currentCharacter === "") setCurrentCharacter(names[0]);
+    });
+  }, [currentCharacter]);
+
+  const refreshItems = useCallback(async () => {
+    getItemsByCharacter(currentCharacter).then((items) => {
+      setItems(items);
+    });
+  }, [currentCharacter]);
+
   useEffect(() => {
     async function getUserData() {
       await supabase.auth.getUser().then((value) => {
-        if (value.data?.user) {
-          setUser(value.data.user);
-        } else {
+        if (!value.data?.user) {
           props.navigate("Login");
         }
       });
@@ -56,28 +66,15 @@ function Home(props) {
       .subscribe();
 
     getUserData();
-  }, []);
-
-  const refreshCharacters = async () => {
-    await getCharacterNames().then((names) => {
-      setCharacterNames(names);
-      if (currentCharacter === "") setCurrentCharacter(names[0]);
-    });
-  };
-
-  const refreshItems = async () => {
-    getItemsByCharacter(currentCharacter).then((items) => {
-      setItems(items);
-    });
-  };
+  }, [props, refreshItems, refreshCharacters]);
 
   useEffect(() => {
     refreshCharacters();
-  }, []);
+  }, [refreshCharacters]);
 
   useEffect(() => {
     refreshItems();
-  }, [currentCharacter]);
+  }, [currentCharacter, refreshItems]);
 
   const removeItem = (index) => {
     let newItems = items.filter((item, i) => i !== index);

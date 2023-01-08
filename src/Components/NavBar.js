@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddElement from "./AddElement";
 
 export default function NavBar(props) {

@@ -1,7 +1,5 @@
-import { useState } from "react";
 import Preis from "../Classes/Preis";
 import AddElement from "./AddElement";
-import ElementList from "./ElementList";
 import Table from "./Table";
 
 export default function Inventar(props) {
@@ -22,17 +20,6 @@ export default function Inventar(props) {
       handelszonen: newStringItem.handelszonen,
     };
     props.addItem(newItem);
-  };
-
-  const renderGewicht = (item) => {
-    if (item.menge === 1) return item.einzelgewicht + " Unzen";
-    return (
-      "je " +
-      item.einzelgewicht +
-      " Unzen (Gesamtgewicht: " +
-      item.menge * item.einzelgewicht +
-      " Unzen)"
-    );
   };
 
   const items = props.items ? props.items : [];

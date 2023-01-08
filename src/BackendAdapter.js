@@ -1,5 +1,4 @@
 import { createClient } from "@supabase/supabase-js";
-import { type } from "@testing-library/user-event/dist/type";
 import Preis from "./Classes/Preis";
 
 const supabase = createClient(
@@ -31,7 +30,9 @@ export async function getItemsByCharacter(characterName) {
     .from("inventory")
     .select("*")
     .eq("owning_character", characterId);
-
+  if (error2) {
+    return [];
+  }
   if (!(typeof inventory === typeof [])) {
     inventory = [inventory];
   }
@@ -51,7 +52,7 @@ export async function getItemsByCharacter(characterName) {
 
 export async function createCharacter(characterName) {
   let uid = (await supabase.auth.getUser()).data.user.id;
-  const { data, error } = await supabase
+  await supabase
     .from("characters")
     .insert([{ name: characterName, user_id: uid }]);
 }
@@ -65,7 +66,7 @@ export async function addItem(item, characterName) {
     return;
   }
   let characterId = character[0].id;
-  const { data, error } = await supabase.from("inventory").insert([
+  await supabase.from("inventory").insert([
     {
       menge: item.menge,
       einheit: item.einheit,
