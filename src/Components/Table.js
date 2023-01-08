@@ -18,7 +18,12 @@ export default function Table(props) {
               <td key={index + innerIndex}>{item[column].toString()}</td>
             ))}
             <td>
-              <span onClick={() => props.deleteItem(item.id)}>delete</span>
+              <span
+                className="click_me"
+                onClick={() => props.deleteItem(item.id)}
+              >
+                löschen
+              </span>
             </td>
           </tr>
         ))}

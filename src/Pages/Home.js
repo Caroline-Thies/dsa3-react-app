@@ -66,6 +66,18 @@ function Home(props) {
       )
       .subscribe();
 
+    supabase
+      .channel("public:inventory")
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "inventory" },
+        (payload) => {
+          console.log("Update received! ", payload);
+          refreshItems();
+        }
+      )
+      .subscribe();
+
     getUserData();
   }, [props, refreshItems, refreshCharacters]);
 

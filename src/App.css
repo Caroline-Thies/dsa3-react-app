@@ -44,3 +44,7 @@ body {
 tr > th {
   text-align: left;
 }
+
+.click_me {
+  cursor: pointer;
+}
