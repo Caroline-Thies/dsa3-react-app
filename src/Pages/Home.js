@@ -7,7 +7,6 @@ import {
   addItem as addItemBackend,
 } from "../BackendAdapter.js";
 import NavBar from "../Components/NavBar.js";
-import { useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
@@ -15,9 +14,7 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsamVyd211a2Zsa2F3YXprdGp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMwNzYzMzEsImV4cCI6MTk4ODY1MjMzMX0.JxH5wsjqq87IvbXVZP0J0u544YDWmt44YVBOEWzXBd4"
 );
 
-function Home() {
-  const navigate = useNavigate();
-
+function Home(props) {
   const [user, setUser] = useState({});
   const [items, setItems] = useState([]);
   const [characterNames, setCharacterNames] = useState([]);
@@ -30,7 +27,7 @@ function Home() {
         if (value.data?.user) {
           setUser(value.data.user);
         } else {
-          navigate("/");
+          props.navigate("Login");
         }
       });
     }
@@ -101,7 +98,7 @@ function Home() {
 
   const signOut = () => {
     supabase.auth.signOut();
-    navigate("/");
+    props.navigate("Login");
   };
   return (
     <div className="Home">
