@@ -7,7 +7,6 @@ import {
   addItem as addItemBackend,
 } from "../BackendAdapter.js";
 import NavBar from "../Components/NavBar.js";
-import { useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
@@ -16,8 +15,6 @@ const supabase = createClient(
 );
 
 function Home() {
-  const navigate = useNavigate();
-
   const [user, setUser] = useState({});
   const [items, setItems] = useState([]);
   const [characterNames, setCharacterNames] = useState([]);
@@ -30,7 +27,7 @@ function Home() {
         if (value.data?.user) {
           setUser(value.data.user);
         } else {
-          navigate("/");
+          props.navigate("/");
         }
       });
     }
